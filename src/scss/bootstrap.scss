@@ -1,0 +1,11 @@
+$font-family-base: "Quattrocento+Sans","Lucida Grande","DejaVu Sans","Bitstream Vera Sans",Helvetica,sans-serif;
+
+@import "../../node_modules/bootstrap/scss/bootstrap";
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: $font-family-base;
+}

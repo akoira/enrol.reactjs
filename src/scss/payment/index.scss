@@ -1,0 +1,63 @@
+.ish-payment {
+  padding: 1rem;
+}
+
+.ish-payment-discount {
+  background-color: $gray-lightest;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.ish-payment-discount__code-input {
+  margin-bottom: 0.5rem;
+}
+
+.ish-payment-discount__add-btn {
+  margin-bottom: 0.5rem;
+}
+
+.ish-payment-discount__total-amount,
+.ish-payment-discount__pay-amount {
+  padding-left: 0.5rem;
+}
+
+
+
+.ish-payment-total__addon {
+  padding: 0 0.25rem !important;
+}
+
+.ish-payment-total__card {
+  font-size: 2rem;
+
+}
+
+.ish-payment-total__card:not(:last-of-type) {
+  padding-right: 0.25rem;
+}
+
+.ish-payment-card {
+  margin-bottom: 1rem;
+}
+
+.ish-payment-btn-pay {
+  padding-left: 5rem;
+  padding-right: 5rem;
+  margin: 2rem 0;
+}
+
+.ish-payment-conditions {
+  padding: 0.5rem;
+  transition: background-color 0.2s;
+  background-color: transparent;
+}
+
+.ish-payment-conditions:hover {
+  transition: background-color 0.2s;
+  background-color: $gray-lightest;
+}
+
+.ish-payment-conditions__text {
+  color: $gray;
+  font-size: 0.9rem;
+}
