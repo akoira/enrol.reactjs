@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "rootDir": "src/js",
+    "rootDir": "src",
     "outDir": "build",
     "allowSyntheticDefaultImports": true,
     "moduleResolution": "node",

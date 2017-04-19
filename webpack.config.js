@@ -1,7 +1,7 @@
 const path = require("path");
 
 const config = {
-    entry: ["./src/js/app.tsx"],
+    entry: ["./src/app.tsx"],
     output: {
         path: path.resolve(__dirname, "build"),
         publicPath: "/assets/",
@@ -17,9 +17,8 @@ const config = {
     module: {
         rules: [
             {
-                test: /\.scss$/,
-                loaders: ['style-loader', 'css-loader', 'sass-loader'],
-                exclude: /node_modules/
+                test: /\.scss$|\.css$/,
+                loaders: ['style-loader', 'css-loader', 'sass-loader']
             },
             {
                 test: /\.tsx?$/,
