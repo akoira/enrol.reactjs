@@ -1,8 +1,11 @@
 import { combineReducers } from 'redux'
-import PaymentReducers from '../payment/reducers/PaymentReducers'
+
+import { reducer as formReducer } from 'redux-form'
+import paymentReducers from '../payment/reducers/PaymentReducers'
 
 const rootReducer = combineReducers({
-    PaymentReducers
+    form: formReducer,
+    paymentReducers
 });
 
 export default rootReducer

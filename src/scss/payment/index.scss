@@ -40,6 +40,16 @@
   margin-bottom: 1rem;
 }
 
+.ish-payment-card__input.form-control-danger {
+  border-color: $red !important;
+}
+
+.ish-payment-card__input.form-control-success {
+  border-color: $green !important;
+}
+
+
+
 .ish-payment-btn-pay {
   padding-left: 5rem;
   padding-right: 5rem;
