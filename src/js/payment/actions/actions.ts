@@ -35,7 +35,7 @@ function requestPayment(success) {
 
 export function fetchTotal() {
     return dispatch => {
-        return fetch(`/enrol.reactjs/api.json`)
+        return fetch(`/enrol.reactjs/src/test/api/fetchTotal.json`)
             .then(response => response.json())
             .then(json => dispatch(requestTotal(json.total)))
     }
@@ -43,7 +43,7 @@ export function fetchTotal() {
 
 export function fetchPayers() {
     return dispatch => {
-        return fetch(`/enrol.reactjs/api.json`)
+        return fetch(`/enrol.reactjs/src/test/api/fetchPayers.json`)
             .then(response => response.json())
             .then(json => dispatch(requestPayers(json.payers)))
     }
@@ -51,7 +51,7 @@ export function fetchPayers() {
 
 export function fetchDiscount(email) {
     return dispatch => {
-        return fetch(`/enrol.reactjs/api.json?email=` + email)
+        return fetch(`/enrol.reactjs/src/test/api/fetchDiscount.json?email=` + email)
             .then(response => response.json())
             .then(json => dispatch(requestDiscount(json.discount)))
     }
@@ -59,7 +59,7 @@ export function fetchDiscount(email) {
 
 export function fetchPayment(form) {
     return dispatch => {
-        return fetch(`/enrol.reactjs/api.json`, {method: 'POST', body: JSON.stringify(form)})
+        return fetch(`/enrol.reactjs/src/test/api/fetchPayment.json`, {method: 'POST', body: JSON.stringify(form)})
             .then(response => response.json())
             .then(json => dispatch(requestPayment(json.success)))
     }

@@ -1,9 +1,6 @@
 {
-  "total": 982,
   "payers": [
     {"id": 1, "name": "Ivan Ivanov"},
     {"id": 2, "name": "Maria Ivanova"}
-  ],
-  "discount": 253,
-  "success": true
+  ]
 }
