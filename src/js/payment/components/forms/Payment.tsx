@@ -137,8 +137,8 @@ class Payment extends Component<PaymentProps, any> {
                 >
                     <div className="row justify-content-center">
                         <div className="form-group col-sm">
-                            <label htmlFor="exampleSelect2">Payment amount</label>
-                            <div className="ish-payment-total input-group" id="exampleSelect2">
+                            <label>Payment amount</label>
+                            <div className="ish-payment-total input-group">
                                 <span className="input-group-addon">$</span>
                                 <input type="text" name="paymentAmount" value={this.props.paymentAmount} className="form-control" autoComplete={'off'} aria-label="Amount (to the nearest dollar)" disabled={true}/>
                                 <div className="ish-payment-total__addon input-group-addon">
@@ -151,10 +151,10 @@ class Payment extends Component<PaymentProps, any> {
                             </div>
                         </div>
                         <div className="form-group col-sm">
-                            <label htmlFor="exampleSelect1">
-                                Payer <small id="emailHelp" className="text-muted">(issue invoice to)</small>
+                            <label>
+                                Payer <small className="text-muted">(issue invoice to)</small>
                             </label>
-                            <select name="payer" className="form-control" autoComplete={'off'} value={this.state.payerId} onChange={this.onChangePayer.bind(this)} id="exampleSelect1">
+                            <select name="payer" className="form-control" autoComplete={'off'} value={this.state.payerId} onChange={this.onChangePayer.bind(this)}>
                                 {payersList}
                             </select>
                         </div>

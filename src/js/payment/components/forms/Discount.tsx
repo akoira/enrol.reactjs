@@ -27,13 +27,13 @@ class Discount extends Component<DiscountProps, any> {
         return (
             <form onSubmit={handleSubmit(this.doSubmit.bind(this))} className="ish-payment">
                 <div className="ish-payment-discount">
-                    <small id="emailHelp" className="ish-payment-discount__tip text-muted">Promotional Code, Gift
+                    <small className="ish-payment-discount__tip text-muted">Promotional Code, Gift
                         Certificate or Voucher
                     </small>
                     <div className="row justify-content-end">
                         <div className="col-sm-6 text-right">
                             <Field component="input" type="email" name="email" required={true}
-                                   className="ish-payment-discount__code-input form-control" id="exampleInputEmail1"
+                                   className="ish-payment-discount__code-input form-control"
                                    aria-describedby="emailHelp" placeholder="Enter email"/>
                             <button className="ish-payment-discount__add-btn btn btn-primary">Add Code</button>
                         </div>
