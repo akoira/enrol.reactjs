@@ -38,7 +38,9 @@ class Payment extends Component<PaymentProps, any> {
     constructor(props: PaymentProps) {
         super(props);
         this.state = {
-            cardValues: {
+            payerId: undefined,
+            formValid: true,
+            cardFields: {
                 number: {
                     value: '',
                     valid: false
@@ -59,36 +61,68 @@ class Payment extends Component<PaymentProps, any> {
         };
     }
 
-    onChangeCardField(e) {
-        let state = this.state,
-            cardValues = state.cardValues,
-            field = Object.keys(Payment.cardFieldNames).find(key => Payment.cardFieldNames[key] === e.target.name);
+    onChangePayer(e) {
+        this.setPayer(e.target.value);
+    }
 
-        let newState = Object.assign({}, state, {
-            cardValues: Object.assign(cardValues, {
-                [field]: {
-                    value: e.target.value,
-                    valid: e.target.className.includes(Payment.validationClasses.valid)
-                }
-            })
+    setPayer(payerId) {
+        let newState = Object.assign({}, this.state, {
+            payerId: payerId
         });
-
         this.setState(newState);
+    }
+
+    onChangeCardField(e) {
+        let input = e.target;
+        setTimeout(() => {
+            let state = this.state,
+                cardFields = state.cardFields,
+                field = Object.keys(Payment.cardFieldNames).find(key => Payment.cardFieldNames[key] === input.name);
+
+            let newState = Object.assign({}, state, {
+                cardFields: Object.assign(cardFields, {
+                    [field]: {
+                        value: input.value,
+                        valid: input.className.includes(Payment.validationClasses.valid)
+                    }
+                })
+            });
+
+            if (this.isFromValid()) newState.formValid = true;
+            this.setState(newState);
+        }, 100);
     }
 
     doSubmit(values) {
         const {dispatch} = this.props;
-        dispatch(fetchPayment(values));
+        let state = this.state;
+
+        this.setState(Object.assign({}, state, {formValid: this.isFromValid()}));
+        dispatch(fetchPayment(this.state));
+    }
+
+    isFromValid() {
+        let state = this.state,
+            cardFields = this.state.cardFields;
+
+        for (let cardField in cardFields) {
+            if (!cardFields[cardField].valid) {
+                return false;
+            }
+        }
+        return true;
     }
 
     componentDidMount() {
         const {dispatch} = this.props;
-        dispatch(fetchPayers());
+        dispatch(fetchPayers()).then(action => {
+            this.setPayer(action.payers[0].id);
+        });
     }
 
     render() {
         const { handleSubmit, payers } = this.props;
-        const payersList = payers instanceof Array ? payers.map(payer => <option key={payer.id}>{payer.name}</option>) : '';
+        const payersList = payers.map(payer => <option value={payer.id} key={payer.id}>{payer.name}</option>);
 
         return (
             <form id="ish-payment-form" onSubmit={handleSubmit(this.doSubmit.bind(this))} className="ish-payment">
@@ -120,7 +154,7 @@ class Payment extends Component<PaymentProps, any> {
                             <label htmlFor="exampleSelect1">
                                 Payer <small id="emailHelp" className="text-muted">(issue invoice to)</small>
                             </label>
-                            <select name="payer" className="form-control" autoComplete={'off'} id="exampleSelect1">
+                            <select name="payer" className="form-control" autoComplete={'off'} value={this.state.payerId} onChange={this.onChangePayer.bind(this)} id="exampleSelect1">
                                 {payersList}
                             </select>
                         </div>
@@ -156,6 +190,10 @@ class Payment extends Component<PaymentProps, any> {
                             target="_blank" href="/legal">enrolment, sale and refund policy</a>.
                                 </span>
                     </label>
+                </div>
+
+                <div className="alert alert-danger" role="alert" hidden={this.state.formValid}>
+                    Please, fill card data correctly.
                 </div>
 
                 <button type="submit" className="ish-payment-btn-pay btn btn-success">Confirm</button>

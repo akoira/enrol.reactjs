@@ -59,7 +59,7 @@ export function fetchDiscount(email) {
 
 export function fetchPayment(form) {
     return dispatch => {
-        return fetch(`/enrol.reactjs/api.json`, {method: 'POST', body: form})
+        return fetch(`/enrol.reactjs/api.json`, {method: 'POST', body: JSON.stringify(form)})
             .then(response => response.json())
             .then(json => dispatch(requestPayment(json.success)))
     }

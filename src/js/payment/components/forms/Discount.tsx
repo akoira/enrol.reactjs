@@ -8,7 +8,6 @@ import { fetchDiscount } from '../../actions/actions'
 interface DiscountProps {
     total: number
     paymentAmount: number
-    email: string
     handleSubmit: any
     dispatch: any
 }
@@ -20,7 +19,7 @@ class Discount extends Component<DiscountProps, any> {
 
     doSubmit (values) {
         const {dispatch} = this.props;
-        dispatch(fetchDiscount(this.props.email));
+        dispatch(fetchDiscount(values.email));
     }
 
     render() {
